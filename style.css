@@ -26,8 +26,8 @@ body{
 }
 #editor #editBar {
    border: var(--editor-border);
-   border-radius: 20px;
-   padding: 10px;
+   border-radius: 25px;
+   height: 50px;
    background-color: #fff;
    display: flex;
    align-items: center;
@@ -41,10 +41,26 @@ body{
     outline: none;
     border: none;
     margin: 0 10px;
-    
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.logout{
+    color: #fff;
+    width: 50px;
+    background-color: tomato !important;
+    margin: 0 0 0 10px !important;
+    border-radius: 50% !important;
+    border :var(--editor-border) !important;
+}
+.save{
+    color: #fff;
+    width: 50px;
+    background-color: lightgreen !important;
+    margin: 0 0 0 10px !important;
+    border-radius: 50% !important;
+    border :var(--editor-border) !important;
 }
 
 /* #textarea{
