@@ -1,9 +1,12 @@
 const editor = document.getElementById("editor")
-
+const iframe = document.getElementById("iframe") //
 const iconSize = 24
 
-document.body.setAttribute("contenteditable","true")
-document.body.style.paddingTop = "100px"
+var frameContent = iframe.contentDocument || iframe.contentWindow.document;
+frameContent.querySelector('body').setAttribute("contenteditable","true")
+console.log(frameContent);
+//iframe.body.setAttribute("contenteditable","true") //
+//document.body.style.paddingTop = "100px"
 editor.setAttribute("contenteditable","false")
 
 
@@ -96,7 +99,11 @@ logoutBtn.innerHTML =
 const saveBtn = document.createElement("button")
 saveBtn.classList.add("save")
 saveBtn.addEventListener("click",()=>{
-  ajax("harun mese")
+ console.log(frameContent.documentElement);
+ frameContent.querySelector('body').setAttribute("contenteditable","false")
+  var data =  frameContent.documentElement.innerHTML
+  ajax(data)
+  frameContent.querySelector('body').setAttribute("contenteditable","true")
 })
 saveBtn.innerHTML = 
 `
@@ -122,7 +129,7 @@ editorBar.appendChild(logoutBtn)
 editor.appendChild(editorBar)
 
 function command(aCommandName, aShowDefaultUI='', aValueArgument=''){
-    document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
+    frameContent.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
  }
 
 
@@ -131,11 +138,17 @@ function command(aCommandName, aShowDefaultUI='', aValueArgument=''){
  function ajax(data) {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
-   // if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
+    if (this.readyState == 4 && this.status == 200) {
+      frameContent.getElementById("demo").innerHTML =
       this.responseText;
-   // }
+      console.log(this.responseText);
+      frameContent.querySelector('body').setAttribute("contenteditable","true")
+    }
   };
-  xhttp.open("GET", "harun.php?q="+data);
-  xhttp.send();
+ 
+  xhttp.open("POST", "harun.php" ,true);
+  xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
+  xhttp.send(data);
 }
+
+//"harun.php?q="+
