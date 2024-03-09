@@ -126,7 +126,7 @@ editorBar.appendChild(olBtn)
 editorBar.appendChild(logoutBtn)
 
 
-editor.appendChild(editorBar)
+//editor.appendChild(editorBar)
 
 function command(aCommandName, aShowDefaultUI='', aValueArgument=''){
     frameContent.execCommand(aCommandName, aShowDefaultUI, aValueArgument)

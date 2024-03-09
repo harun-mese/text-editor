@@ -1,7 +1,6 @@
 <?php
 
 
-
 // POST isteğini aldığınızda çalışacak kod
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // POST verilerine erişim
@@ -19,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // POST isteği gelmediyse uygun bir yanıt gönderme
     echo "Sadece POST istekleri kabul edilmektedir.";
 }
-
 
 
 ?>
